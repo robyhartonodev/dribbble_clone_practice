@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:dribbble_clone_practice/models/food_type.dart';
 import 'package:dribbble_clone_practice/widgets/card_list.dart';
+import 'package:dribbble_clone_practice/widgets/food_type_list.dart';
 import 'package:flutter/material.dart';
 
 import 'models/food_item.dart';
@@ -75,41 +77,90 @@ class _MyHomePageState extends State<MyHomePage> {
     )
   ];
 
+  List<FoodType> foodTypes = [
+    FoodType(
+        name: 'Drink',
+        icon: Icon(
+          Icons.local_drink_outlined,
+          size: 28.0,
+          color: Colors.brown,
+        ),
+        count: 12),
+    FoodType(
+        name: 'Coffee',
+        icon: Icon(
+          Icons.coffee,
+          size: 28.0,
+          color: Colors.brown,
+        ),
+        count: 22),
+    FoodType(
+        name: 'Desert',
+        icon: Icon(
+          Icons.cake_outlined,
+          size: 28.0,
+          color: Colors.brown,
+        ),
+        count: 12),
+    FoodType(
+        name: 'Drink',
+        icon: Icon(
+          Icons.local_drink_outlined,
+          size: 28.0,
+          color: Colors.brown,
+        ),
+        count: 12),
+    FoodType(
+        name: 'Coffee',
+        icon: Icon(
+          Icons.coffee,
+          size: 28.0,
+          color: Colors.brown,
+        ),
+        count: 22),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(32.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Good morning',
-                  style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                  onPressed: () {
-                    print('pressed');
-                  },
-                  icon: const Icon(Icons.shopping_cart, color: Colors.grey, size: 36.0),
-                )
-              ],
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Jerry',
-                  style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 8.0),
-                Icon(Icons.coffee, size: 36.0)
-              ],
-            ),
-            CardListWidget(foodItems: foodItems)
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Good morning',
+                    style:
+                        TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      print('pressed');
+                    },
+                    icon: const Icon(Icons.shopping_cart,
+                        color: Colors.grey, size: 36.0),
+                  )
+                ],
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Jerry',
+                    style:
+                        TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 8.0),
+                  Icon(Icons.coffee, size: 36.0)
+                ],
+              ),
+              FoodTypeListWidget(foodTypes: foodTypes),
+              CardListWidget(foodItems: foodItems),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: NavigationBar(

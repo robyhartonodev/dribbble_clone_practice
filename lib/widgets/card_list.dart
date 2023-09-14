@@ -9,8 +9,9 @@ class CardListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 435.0,
+      height: 475,
       child: ListView(
+        padding: EdgeInsets.all(2.0),
         scrollDirection: Axis.horizontal,
         children: [
           for (FoodItem foodItem in foodItems)
@@ -29,7 +30,7 @@ class CoffeeCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 240.0,
+        width: 272.0,
         height: 300.0,
         child: Card(
           elevation: 4,
@@ -60,67 +61,69 @@ class CoffeeCardWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(36.0),
-                                child: const Image(
-                                  width: 36.0,
-                                  height: 36.0,
-                                  image:
-                                      AssetImage('/images/random_person_1.png'),
-                                  fit: BoxFit.cover,
+                    child: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(36.0),
+                                  child: const Image(
+                                    width: 36.0,
+                                    height: 36.0,
+                                    image: AssetImage(
+                                        '/images/random_person_1.png'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(36.0),
-                                child: const Image(
-                                  width: 36.0,
-                                  height: 36.0,
-                                  image:
-                                  AssetImage('/images/random_person_1.png'),
-                                  fit: BoxFit.cover,
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(36.0),
+                                  child: const Image(
+                                    width: 36.0,
+                                    height: 36.0,
+                                    image: AssetImage(
+                                        '/images/random_person_1.png'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(36.0),
-                                child: const Image(
-                                  width: 36.0,
-                                  height: 36.0,
-                                  image:
-                                  AssetImage('/images/random_person_1.png'),
-                                  fit: BoxFit.cover,
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(36.0),
+                                  child: const Image(
+                                    width: 36.0,
+                                    height: 36.0,
+                                    image: AssetImage(
+                                        '/images/random_person_1.png'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              foodItem.ratings.toStringAsPrecision(2),
-                              style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                            )
-                          ],
-                        )
-                      ],
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                foodItem.ratings.toStringAsPrecision(2),
+                                style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
