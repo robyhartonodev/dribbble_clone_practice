@@ -1,15 +1,22 @@
 import 'package:dribbble_clone_practice/models/food_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CardListWidget extends StatelessWidget {
-  const CardListWidget({super.key});
+  final List<FoodItem> foodItems;
+
+  const CardListWidget({super.key, required this.foodItems});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: [],
+    return SizedBox(
+      height: 435.0,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          for (FoodItem foodItem in foodItems)
+            CoffeeCardWidget(foodItem: foodItem)
+        ],
+      ),
     );
   }
 }
@@ -21,15 +28,119 @@ class CoffeeCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.all(32.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: Column(
-        children: <Widget>[
-
-        ],
-      ),
-    );
+    return SizedBox(
+        width: 240.0,
+        height: 300.0,
+        child: Card(
+          elevation: 4,
+          margin: const EdgeInsets.fromLTRB(0.0, 32.0, 32.0, 0.0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(32.0),
+                    child: Image(
+                      width: double.infinity,
+                      image: AssetImage(foodItem.image),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      foodItem.name,
+                      style: const TextStyle(
+                          fontSize: 24.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(36.0),
+                                child: const Image(
+                                  width: 36.0,
+                                  height: 36.0,
+                                  image:
+                                      AssetImage('/images/random_person_1.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(36.0),
+                                child: const Image(
+                                  width: 36.0,
+                                  height: 36.0,
+                                  image:
+                                  AssetImage('/images/random_person_1.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(36.0),
+                                child: const Image(
+                                  width: 36.0,
+                                  height: 36.0,
+                                  image:
+                                  AssetImage('/images/random_person_1.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              foodItem.ratings.toStringAsPrecision(2),
+                              style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Positioned(
+                bottom: 110.0,
+                right: 12.0,
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(32.0),
+                      color: Colors.white,
+                    ),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.favorite),
+                      color: Colors.red,
+                    )),
+              )
+            ],
+          ),
+        ));
   }
 }

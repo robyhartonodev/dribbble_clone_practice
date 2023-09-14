@@ -1,8 +1,10 @@
+import 'package:flutter/widgets.dart';
+
 class FoodItem {
   final double ratings;
   final String name;
   final String type;
-  final String icon;
+  final Icon? icon;
   final String description;
   final double price;
   final String image;
