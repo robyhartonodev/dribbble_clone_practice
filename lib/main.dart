@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         HomePage(),
       ][currentPageIndex],
       bottomNavigationBar: Container(
-        height: 100,
+        height: (currentPageIndex == 0) ? 80 : 120,
         child: Column(
           children: [
             (currentPageIndex == 0)
@@ -96,10 +96,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        ElevatedButton(
-                            onPressed: () {}, child: Text('Add to cart')),
-                        ElevatedButton(
-                            onPressed: () {}, child: Text('Order now')),
+                        OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.all(16.0),
+                          ),
+                          child: const Text(
+                            'Add to cart',
+                            style: TextStyle(fontSize: 24.0),
+                          ),
+                        ),
+                        FilledButton(
+                          onPressed: () {},
+                          style: FilledButton.styleFrom(
+                            padding: const EdgeInsets.all(16.0),
+                          ),
+                          child: const Text(
+                            'Order now',
+                            style: TextStyle(fontSize: 24.0),
+                          ),
+                        ),
                       ],
                     ),
                   ),

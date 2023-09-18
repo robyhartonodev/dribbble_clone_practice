@@ -1,3 +1,4 @@
+import 'package:dribbble_clone_practice/main.dart';
 import 'package:dribbble_clone_practice/models/food_item.dart';
 import 'package:flutter/material.dart';
 
@@ -64,10 +65,12 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       children: [
                         IconButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => MyHomePage()));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MyHomePage(),
+                              ),
+                            );
                           },
                           icon: const Icon(
                             Icons.arrow_back,
@@ -133,7 +136,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             Column(
               children: [
                 Container(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: TabBar(
                     controller: _tabController,
                     tabs: const [
@@ -144,23 +147,17 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(32.0),
+                  padding: const EdgeInsets.all(32.0),
                   height: 500,
                   child: TabBarView(
                     controller: _tabController,
-                    children: [
+                    children: const [
                       // Content of Tab 1
-                      Container(
-                        child: Text('Test 1'),
-                      ),
+                      Text('Test 1'),
                       // Content of Tab 2
-                      Container(
-                        child: Text('Test 2'),
-                      ),
+                      Text('Test 2'),
                       // Content of Tab 3
-                      Container(
-                        child: Text('Test 3'),
-                      ),
+                      Text('Test 3'),
                     ],
                   ),
                 )
