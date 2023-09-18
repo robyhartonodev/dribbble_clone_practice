@@ -132,15 +132,16 @@ class CoffeeCardWidget extends StatelessWidget {
                 bottom: 110.0,
                 right: 12.0,
                 child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(32.0),
-                      color: Colors.white,
-                    ),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.favorite),
-                      color: Colors.red,
-                    )),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(32.0),
+                    color: Colors.white,
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.favorite),
+                    color: Colors.red,
+                  ),
+                ),
               )
             ],
           ),
