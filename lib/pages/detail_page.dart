@@ -1,4 +1,3 @@
-import 'package:dribbble_clone_practice/main.dart';
 import 'package:dribbble_clone_practice/models/food_item.dart';
 import 'package:flutter/material.dart';
 
@@ -65,10 +64,10 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MyHomePage()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => MyHomePage()));
                           },
                           icon: const Icon(
                             Icons.arrow_back,
@@ -138,29 +137,33 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                   child: TabBar(
                     controller: _tabController,
                     tabs: const [
-                      Tab(text: 'Tab 1'),
-                      Tab(text: 'Tab 2'),
-                      Tab(text: 'Tab 3'),
+                      Tab(text: 'Details'),
+                      Tab(text: 'Ingredients'),
+                      Tab(text: 'Review'),
                     ],
                   ),
                 ),
-                // TabBarView(
-                //   controller: _tabController,
-                //   children: [
-                //     // Content of Tab 1
-                //     Container(
-                //       child: Text('Test 1'),
-                //     ),
-                //     // Content of Tab 2
-                //     Container(
-                //       child: Text('Test 2'),
-                //     ),
-                //     // Content of Tab 3
-                //     Container(
-                //       child: Text('Test 3'),
-                //     ),
-                //   ],
-                // ),
+                Container(
+                  padding: EdgeInsets.all(32.0),
+                  height: 500,
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      // Content of Tab 1
+                      Container(
+                        child: Text('Test 1'),
+                      ),
+                      // Content of Tab 2
+                      Container(
+                        child: Text('Test 2'),
+                      ),
+                      // Content of Tab 3
+                      Container(
+                        child: Text('Test 3'),
+                      ),
+                    ],
+                  ),
+                )
               ],
             )
           ],
