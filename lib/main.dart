@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         HomePage(),
         HomePage(),
         HomePage(),
+        HomePage(),
         DetailPage(foodItem: appState.selectedFoodItem)
       ][appState.pageIndex],
       bottomNavigationBar: Container(

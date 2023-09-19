@@ -37,7 +37,7 @@ class CoffeeCardWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        appState.setPageIndex(4);
+        appState.setPageIndex(5);
         appState.setFoodItem(foodItem);
       },
       child: SizedBox(
