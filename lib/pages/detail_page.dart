@@ -1,6 +1,7 @@
 import 'package:dribbble_clone_practice/main.dart';
 import 'package:dribbble_clone_practice/models/food_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailPage extends StatefulWidget {
   final FoodItem foodItem;
@@ -28,10 +29,12 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var appState = Provider.of<AppState>(context);
+
     List<Widget> starWidgets = [];
     starWidgets.add(
       Text(
-        widget.foodItem.ratings.toStringAsPrecision(2),
+        appState.selectedFoodItem.ratings.toStringAsPrecision(2),
         style: const TextStyle(
           color: Colors.grey,
           fontWeight: FontWeight.bold,
@@ -39,7 +42,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
       ),
     );
     for (int i = 1; i <= 5; i++) {
-      if (widget.foodItem.ratings.toInt() >= i) {
+      if (appState.selectedFoodItem.ratings.toInt() >= i) {
         starWidgets.add(
           const Icon(
             Icons.star,
@@ -84,7 +87,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                         child: Image(
                           width: double.infinity,
                           height: 430,
-                          image: AssetImage(widget.foodItem.image),
+                          image: AssetImage(appState.selectedFoodItem.image),
                           fit: BoxFit.cover,
                           color: Colors.transparent,
                         ),
@@ -103,12 +106,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MyHomePage(),
-                              ),
-                            );
+                            appState.setPageIndex(0);
                           },
                           icon: const Icon(
                             Icons.arrow_back,
@@ -147,13 +145,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             ),
             Container(
               padding: const EdgeInsets.all(32.0),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Hot Coffee",
-                    style: TextStyle(
+                    appState.selectedFoodItem.name,
+                    style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -162,13 +160,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "\$15",
-                        style: TextStyle(
+                        "\$${appState.selectedFoodItem.price}",
+                        style: const TextStyle(
                           fontSize: 24.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Icon(
@@ -237,7 +235,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       Column(
                         children: [
                           Text(
-                            widget.foodItem.description,
+                            appState.selectedFoodItem.description,
                             style: const TextStyle(
                               color: Colors.grey,
                             ),
@@ -293,6 +291,21 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           image: AssetImage(
                                               '/images/random_person_1.png'),
                                           fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.only(right: 4.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(32.0),
+                                          color: Colors.grey.shade300,
+                                        ),
+                                        child: IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(Icons.add),
+                                          color: Colors.brown,
                                         ),
                                       ),
                                     ),

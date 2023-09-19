@@ -1,5 +1,7 @@
+import 'package:dribbble_clone_practice/main.dart';
 import 'package:dribbble_clone_practice/models/food_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CardListWidget extends StatelessWidget {
   final List<FoodItem> foodItems;
@@ -15,7 +17,9 @@ class CardListWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           for (FoodItem foodItem in foodItems)
-            CoffeeCardWidget(foodItem: foodItem)
+            CoffeeCardWidget(
+              foodItem: foodItem,
+            )
         ],
       ),
     );
@@ -29,7 +33,14 @@ class CoffeeCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    var appState = Provider.of<AppState>(context);
+
+    return InkWell(
+      onTap: () {
+        appState.setPageIndex(4);
+        appState.setFoodItem(foodItem);
+      },
+      child: SizedBox(
         width: 272.0,
         height: 300.0,
         child: Card(
@@ -42,12 +53,14 @@ class CoffeeCardWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(32.0),
-                    child: Image(
-                      width: double.infinity,
-                      image: AssetImage(foodItem.image),
-                      fit: BoxFit.cover,
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(32.0),
+                      child: Image(
+                        width: double.infinity,
+                        image: AssetImage(foodItem.image),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -129,7 +142,7 @@ class CoffeeCardWidget extends StatelessWidget {
                 ],
               ),
               Positioned(
-                bottom: 110.0,
+                bottom: 102.0,
                 right: 12.0,
                 child: Container(
                   decoration: BoxDecoration(
@@ -145,6 +158,8 @@ class CoffeeCardWidget extends StatelessWidget {
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

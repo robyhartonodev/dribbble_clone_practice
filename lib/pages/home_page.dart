@@ -25,22 +25,22 @@ class _HomePageState extends State<HomePage> {
       image: 'images/coffee.png',
     ),
     FoodItem(
-      ratings: 4.0,
-      name: 'Hot Coffee',
+      ratings: 4.3,
+      name: 'Cappucino',
       type: 'Coffee',
       icon: null,
       description: 'Testing',
-      price: 15.0,
-      image: 'images/coffee.png',
+      price: 18.0,
+      image: 'images/cappucino.png',
     ),
     FoodItem(
       ratings: 4.0,
-      name: 'Hot Coffee',
+      name: 'Espresso',
       type: 'Coffee',
       icon: null,
       description: 'Testing',
       price: 15.0,
-      image: 'images/coffee.png',
+      image: 'images/espresso.png',
     )
   ];
 

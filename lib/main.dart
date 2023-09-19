@@ -4,9 +4,15 @@ import 'package:dribbble_clone_practice/models/food_item.dart';
 import 'package:dribbble_clone_practice/pages/detail_page.dart';
 import 'package:dribbble_clone_practice/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppState(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class CustomScrollBehavior extends MaterialScrollBehavior {
@@ -15,6 +21,37 @@ class CustomScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
       };
+}
+
+class AppState extends ChangeNotifier {
+  int pageIndex = 0;
+  late FoodItem selectedFoodItem = FoodItem(
+    ratings: 4.0,
+    name: 'Hot Coffee',
+    type: 'Coffee',
+    icon: null,
+    description: 'Testing',
+    price: 15.0,
+    image: 'images/coffee.png',
+  );
+
+  int get getPageIndex {
+    return pageIndex;
+  }
+
+  void setPageIndex(int newPageIndex) {
+    pageIndex = newPageIndex;
+    notifyListeners();
+  }
+
+  FoodItem get getFoodItem {
+    return selectedFoodItem;
+  }
+
+  void setFoodItem(FoodItem foodItem) {
+    selectedFoodItem = foodItem;
+    notifyListeners();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -43,40 +80,30 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentPageIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    var appState = Provider.of<AppState>(context);
+
     return Scaffold(
       body: <Widget>[
         HomePage(),
-        DetailPage(
-          foodItem: FoodItem(
-            ratings: 3.8,
-            name: 'Hot Coffee',
-            type: 'Coffee',
-            icon: null,
-            description: 'Testing',
-            price: 15.0,
-            image: 'images/coffee.png',
-          ),
-        ),
         HomePage(),
         HomePage(),
         HomePage(),
-      ][currentPageIndex],
+        DetailPage(foodItem: appState.selectedFoodItem)
+      ][appState.pageIndex],
       bottomNavigationBar: Container(
-        height: (currentPageIndex == 0) ? 80 : 120,
+        height: (appState.pageIndex < 5) ? 80 : 120,
         child: Column(
           children: [
-            (currentPageIndex == 0)
+            (appState.pageIndex < 5)
                 ? NavigationBar(
                     onDestinationSelected: (int index) {
                       setState(() {
-                        currentPageIndex = index;
+                        appState.pageIndex = index;
                       });
                     },
-                    selectedIndex: currentPageIndex,
+                    selectedIndex: appState.pageIndex,
                     destinations: const <Widget>[
                       NavigationDestination(
                           icon: Icon(Icons.home_filled), label: 'Home'),
