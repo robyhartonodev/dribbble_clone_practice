@@ -1,15 +1,21 @@
 import 'dart:ui';
 
-import 'package:dribbble_clone_practice/models/food_item.dart';
-import 'package:dribbble_clone_practice/pages/detail_page.dart';
-import 'package:dribbble_clone_practice/pages/home_page.dart';
+import 'package:dribbble_clone_practice/coffee_app/pages/my_home_page.dart';
+import 'package:dribbble_clone_practice/coffee_app/providers/coffee_app_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AppState(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CoffeeAppStateProvider>(
+          create: (context) => CoffeeAppStateProvider(),
+        ),
+        ChangeNotifierProvider<AppStateProvider>(
+          create: (context) => AppStateProvider(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -21,37 +27,6 @@ class CustomScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
       };
-}
-
-class AppState extends ChangeNotifier {
-  int pageIndex = 0;
-  late FoodItem selectedFoodItem = FoodItem(
-    ratings: 4.0,
-    name: 'Hot Coffee',
-    type: 'Coffee',
-    icon: null,
-    description: 'Testing',
-    price: 15.0,
-    image: 'images/coffee.png',
-  );
-
-  int get getPageIndex {
-    return pageIndex;
-  }
-
-  void setPageIndex(int newPageIndex) {
-    pageIndex = newPageIndex;
-    notifyListeners();
-  }
-
-  FoodItem get getFoodItem {
-    return selectedFoodItem;
-  }
-
-  void setFoodItem(FoodItem foodItem) {
-    selectedFoodItem = foodItem;
-    notifyListeners();
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -67,100 +42,101 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown.shade500),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: const StartPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class MainNavigationPage extends StatefulWidget {
+  const MainNavigationPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainNavigationPage> createState() => _MainNavigationPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainNavigationPageState extends State<MainNavigationPage> {
   @override
   Widget build(BuildContext context) {
-    var appState = Provider.of<AppState>(context);
+    var appState = Provider.of<AppStateProvider>(context);
 
-    return Scaffold(
-      body: <Widget>[
-        HomePage(),
-        HomePage(),
-        HomePage(),
-        HomePage(),
-        HomePage(),
-        DetailPage(foodItem: appState.selectedFoodItem)
-      ][appState.pageIndex],
-      bottomNavigationBar: Container(
-        height: (appState.pageIndex < 5) ? 80 : 120,
-        child: Column(
-          children: [
-            (appState.pageIndex < 5)
-                ? NavigationBar(
-                    onDestinationSelected: (int index) {
-                      setState(() {
-                        appState.pageIndex = index;
-                      });
-                    },
-                    selectedIndex: appState.pageIndex,
-                    destinations: const <Widget>[
-                      NavigationDestination(
-                          icon: Icon(Icons.home_filled), label: 'Home'),
-                      NavigationDestination(
-                          icon: Icon(Icons.coffee), label: 'Order'),
-                      NavigationDestination(
-                          icon: Icon(Icons.search), label: 'Search'),
-                      NavigationDestination(
-                          icon: Icon(Icons.workspace_premium), label: 'Reward'),
-                      NavigationDestination(
-                          icon: Icon(Icons.list), label: 'Menu')
-                    ],
-                    surfaceTintColor: Colors.white,
-                  )
-                : Container(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.all(16.0),
-                              side: const BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            child: const Text(
-                              'Add to cart',
-                              style: TextStyle(
-                                fontSize: 24.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: FilledButton(
-                            onPressed: () {},
-                            style: FilledButton.styleFrom(
-                              padding: const EdgeInsets.all(16.0),
-                            ),
-                            child: const Text(
-                              'Order now',
-                              style: TextStyle(fontSize: 24.0),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: ListView(
+        children: [
+          InkWell(
+            onTap: () {
+              appState.setAppIndex(1);
+              appState.setAppTitle('Coffee App');
+            },
+            child: const Card(
+              elevation: 4,
+              child: SizedBox(
+                height: 150,
+                child: Text('Coffee App'),
+              ),
+            ),
+          )
+        ],
       ),
     );
+  }
+}
+
+class StartPage extends StatefulWidget {
+  const StartPage({super.key});
+
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
+  // Add new apps here
+  List<Widget> apps = [MainNavigationPage(), MyHomePage()];
+
+  @override
+  Widget build(BuildContext context) {
+    var appState = Provider.of<AppStateProvider>(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 8,
+        shadowColor: Colors.black,
+        title: Text(appState.appTitle),
+        backgroundColor: Colors.orange,
+        leading: (appState.appIndex > 0)
+            ? IconButton(
+                onPressed: () {
+                  appState.setAppIndex(0);
+                  appState.setAppTitle('UI App Compilations');
+                },
+                icon: const Icon(Icons.arrow_back),
+              )
+            : null,
+      ),
+      body: apps[appState.appIndex],
+    );
+  }
+}
+
+class AppStateProvider extends ChangeNotifier {
+  int appIndex = 0;
+  String appTitle = 'UI App Compilations';
+
+  int get getAppIndex {
+    return appIndex;
+  }
+
+  String get getAppTitle {
+    return appTitle;
+  }
+
+  void setAppIndex(int newAppIndex) {
+    appIndex = newAppIndex;
+    notifyListeners();
+  }
+
+  void setAppTitle(String newAppTitle) {
+    appTitle = newAppTitle;
+    notifyListeners();
   }
 }

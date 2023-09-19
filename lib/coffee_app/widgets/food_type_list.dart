@@ -1,4 +1,4 @@
-import 'package:dribbble_clone_practice/models/food_type.dart';
+import 'package:dribbble_clone_practice/coffee_app/models/food_type.dart';
 import 'package:flutter/material.dart';
 
 class FoodTypeListWidget extends StatelessWidget {

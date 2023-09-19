@@ -1,7 +1,7 @@
-import 'package:dribbble_clone_practice/models/food_item.dart';
-import 'package:dribbble_clone_practice/models/food_type.dart';
-import 'package:dribbble_clone_practice/widgets/card_list.dart';
-import 'package:dribbble_clone_practice/widgets/food_type_list.dart';
+import 'package:dribbble_clone_practice/coffee_app/models/food_item.dart';
+import 'package:dribbble_clone_practice/coffee_app/models/food_type.dart';
+import 'package:dribbble_clone_practice/coffee_app/widgets/card_list.dart';
+import 'package:dribbble_clone_practice/coffee_app/widgets/food_type_list.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

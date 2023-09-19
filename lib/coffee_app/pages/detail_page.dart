@@ -1,5 +1,5 @@
-import 'package:dribbble_clone_practice/main.dart';
-import 'package:dribbble_clone_practice/models/food_item.dart';
+import 'package:dribbble_clone_practice/coffee_app/models/food_item.dart';
+import 'package:dribbble_clone_practice/coffee_app/providers/coffee_app_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +29,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    var appState = Provider.of<AppState>(context);
+    var appState = Provider.of<CoffeeAppStateProvider>(context);
 
     List<Widget> starWidgets = [];
     starWidgets.add(
