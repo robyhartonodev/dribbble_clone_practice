@@ -68,12 +68,40 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
               appState.setAppIndex(1);
               appState.setAppTitle('Coffee App');
             },
-            child: const Card(
+            child: Card(
+              color: Colors.white,
               elevation: 4,
-              child: SizedBox(
-                height: 150,
-                child: Text('Coffee App'),
-              ),
+              child: Container(
+                  height: 150,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8.0),
+                    ),
+                    color: Colors.white,
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.coffee,
+                          color: Colors.brown,
+                          size: 64.0,
+                        ),
+                        SizedBox(
+                          width: 16.0,
+                        ),
+                        Text(
+                          'Coffee App',
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  )),
             ),
           )
         ],
@@ -91,7 +119,7 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
   // Add new apps here
-  List<Widget> apps = [MainNavigationPage(), MyHomePage()];
+  List<Widget> apps = [const MainNavigationPage(), const MyHomePage()];
 
   @override
   Widget build(BuildContext context) {
