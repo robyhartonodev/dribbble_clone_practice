@@ -36,6 +36,7 @@ class CoffeeCardWidget extends StatelessWidget {
     var appState = Provider.of<AppState>(context);
 
     return InkWell(
+      hoverColor: Colors.transparent,
       onTap: () {
         appState.setPageIndex(5);
         appState.setFoodItem(foodItem);
