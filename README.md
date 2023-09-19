@@ -7,4 +7,4 @@ Practice cloning this dribbble design in flutter https://dribbble.com/shots/6188
 
 # Demo
 
-![Demo] (https://raw.githubusercontent.com/robyhartonodev/dribbble_clone_practice/master/assets/demo.gif)
+![Demo](https://raw.githubusercontent.com/robyhartonodev/dribbble_clone_practice/master/assets/demo.gif)
