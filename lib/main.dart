@@ -95,9 +95,10 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                         Text(
                           'Coffee App',
                           style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 32.0,
-                              fontWeight: FontWeight.bold),
+                            color: Colors.grey,
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )
                       ],
                     ),
