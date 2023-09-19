@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
   List<FoodType> foodTypes = [
     FoodType(
         name: 'Drink',
-        icon: Icon(
+        icon: const Icon(
           Icons.local_drink_outlined,
           size: 28.0,
           color: Colors.brown,
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
         count: 12),
     FoodType(
         name: 'Coffee',
-        icon: Icon(
+        icon: const Icon(
           Icons.coffee,
           size: 28.0,
           color: Colors.brown,
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
         count: 22),
     FoodType(
         name: 'Desert',
-        icon: Icon(
+        icon: const Icon(
           Icons.cake_outlined,
           size: 28.0,
           color: Colors.brown,
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         count: 12),
     FoodType(
         name: 'Drink',
-        icon: Icon(
+        icon: const Icon(
           Icons.local_drink_outlined,
           size: 28.0,
           color: Colors.brown,
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
         count: 12),
     FoodType(
         name: 'Coffee',
-        icon: Icon(
+        icon: const Icon(
           Icons.coffee,
           size: 28.0,
           color: Colors.brown,

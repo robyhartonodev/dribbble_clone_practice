@@ -11,7 +11,7 @@ class FoodTypeListWidget extends StatelessWidget {
     return SizedBox(
       height: 200.0,
       child: ListView(
-        padding: EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(2.0),
         scrollDirection: Axis.horizontal,
         children: [
           for (FoodType foodType in foodTypes)
@@ -36,17 +36,17 @@ class FoodTypeCardWidget extends StatelessWidget {
       height: 150.0,
       child: Card(
         elevation: 4,
-        margin: EdgeInsets.fromLTRB(0.0, 32.0, 32.0, 0.0),
+        margin: const EdgeInsets.fromLTRB(0.0, 32.0, 32.0, 0.0),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(64.0)),
         child: Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Container(
                 width: 64,
                 height: 64,
-                margin: EdgeInsets.only(bottom: 8.0),
+                margin: const EdgeInsets.only(bottom: 8.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
@@ -57,7 +57,7 @@ class FoodTypeCardWidget extends StatelessWidget {
               ),
               Text(
                 foodType.name,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -65,7 +65,7 @@ class FoodTypeCardWidget extends StatelessWidget {
                 width: 64,
                 height: 24,
                 alignment: Alignment.center,
-                margin: EdgeInsets.only(top: 8.0),
+                margin: const EdgeInsets.only(top: 8.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(16.0),

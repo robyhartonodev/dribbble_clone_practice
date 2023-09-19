@@ -28,6 +28,34 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> starWidgets = [];
+    starWidgets.add(
+      Text(
+        widget.foodItem.ratings.toStringAsPrecision(2),
+        style: const TextStyle(
+          color: Colors.grey,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+    for (int i = 1; i <= 5; i++) {
+      if (widget.foodItem.ratings.toInt() >= i) {
+        starWidgets.add(
+          const Icon(
+            Icons.star,
+            color: Colors.yellow,
+          ),
+        );
+      } else {
+        starWidgets.add(
+          const Icon(
+            Icons.star,
+            color: Colors.grey,
+          ),
+        );
+      }
+    }
+
     return ListView(
       children: [
         Column(
@@ -35,29 +63,39 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             Stack(
               children: [
                 Container(
-                  decoration: BoxDecoration(boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      spreadRadius: 5,
-                      blurRadius: 10,
-                    )
-                  ]),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(32.0),
-                      bottomRight: Radius.circular(32.0),
-                    ),
-                    child: Image(
-                      width: double.infinity,
-                      height: 430,
-                      image: AssetImage(widget.foodItem.image),
-                      fit: BoxFit.cover,
-                    ),
+                  height: 450,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        spreadRadius: 1,
+                        blurRadius: 10,
+                      ),
+                    ],
+                    color: Colors.transparent,
+                  ),
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(32.0),
+                          bottomRight: Radius.circular(32.0),
+                        ),
+                        child: Image(
+                          width: double.infinity,
+                          height: 430,
+                          image: AssetImage(widget.foodItem.image),
+                          fit: BoxFit.cover,
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Positioned(
                   top: 48,
                   child: Container(
+                    color: Colors.transparent,
                     padding: const EdgeInsets.only(right: 8.0, left: 8.0),
                     width: MediaQuery.of(context).size.width,
                     child: Row(
@@ -90,6 +128,21 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
+                Positioned(
+                  bottom: 8.0,
+                  right: 16.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(32.0),
+                      color: Colors.white,
+                    ),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.favorite),
+                      color: Colors.red,
+                    ),
+                  ),
+                )
               ],
             ),
             Container(
@@ -135,34 +188,131 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             ),
             Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TabBar(
-                    controller: _tabController,
-                    tabs: const [
-                      Tab(text: 'Details'),
-                      Tab(text: 'Ingredients'),
-                      Tab(text: 'Review'),
-                    ],
-                  ),
+                const Divider(
+                  thickness: 1.0,
+                  color: Colors.grey,
+                ),
+                TabBar(
+                  controller: _tabController,
+                  tabs: const [
+                    Tab(
+                      child: Text(
+                        'Details',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'Ingredients',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'Review',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                  dividerColor: Colors.grey,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  unselectedLabelColor: Colors.grey,
                 ),
                 Container(
                   padding: const EdgeInsets.all(32.0),
                   height: 500,
                   child: TabBarView(
                     controller: _tabController,
-                    children: const [
+                    children: [
                       // Content of Tab 1
-                      Text('Test 1'),
+                      Column(
+                        children: [
+                          Text(
+                            widget.foodItem.description,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8.0,
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 4.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(36.0),
+                                        child: const Image(
+                                          width: 36.0,
+                                          height: 36.0,
+                                          image: AssetImage(
+                                              '/images/random_person_1.png'),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 4.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(36.0),
+                                        child: const Image(
+                                          width: 36.0,
+                                          height: 36.0,
+                                          image: AssetImage(
+                                              '/images/random_person_1.png'),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 4.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(36.0),
+                                        child: const Image(
+                                          width: 36.0,
+                                          height: 36.0,
+                                          image: AssetImage(
+                                              '/images/random_person_1.png'),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(children: starWidgets)
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                       // Content of Tab 2
-                      Text('Test 2'),
+                      const Text('Ingredients'),
                       // Content of Tab 3
-                      Text('Test 3'),
+                      const Text('Review'),
                     ],
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ],

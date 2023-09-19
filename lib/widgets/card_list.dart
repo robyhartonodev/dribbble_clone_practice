@@ -11,7 +11,7 @@ class CardListWidget extends StatelessWidget {
     return SizedBox(
       height: 475,
       child: ListView(
-        padding: EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(2.0),
         scrollDirection: Axis.horizontal,
         children: [
           for (FoodItem foodItem in foodItems)
@@ -52,7 +52,7 @@ class CoffeeCardWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       foodItem.name,
                       style: const TextStyle(
@@ -68,7 +68,7 @@ class CoffeeCardWidget extends StatelessWidget {
                           Row(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(right: 4.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(36.0),
                                   child: const Image(
@@ -81,7 +81,7 @@ class CoffeeCardWidget extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(right: 4.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(36.0),
                                   child: const Image(
@@ -94,7 +94,7 @@ class CoffeeCardWidget extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(right: 4.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(36.0),
                                   child: const Image(
@@ -119,7 +119,7 @@ class CoffeeCardWidget extends StatelessWidget {
                               const Icon(
                                 Icons.star,
                                 color: Colors.yellow,
-                              )
+                              ),
                             ],
                           )
                         ],

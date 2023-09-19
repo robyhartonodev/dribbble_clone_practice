@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         HomePage(),
         DetailPage(
           foodItem: FoodItem(
-            ratings: 4.0,
+            ratings: 3.8,
             name: 'Hot Coffee',
             type: 'Coffee',
             icon: null,
@@ -92,28 +92,39 @@ class _MyHomePageState extends State<MyHomePage> {
                     surfaceTintColor: Colors.white,
                   )
                 : Container(
-                    padding: EdgeInsets.all(32.0),
+                    padding: const EdgeInsets.all(24.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        OutlinedButton(
-                          onPressed: () {},
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.all(16.0),
-                          ),
-                          child: const Text(
-                            'Add to cart',
-                            style: TextStyle(fontSize: 24.0),
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.all(16.0),
+                              side: const BorderSide(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            child: const Text(
+                              'Add to cart',
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                color: Colors.grey,
+                              ),
+                            ),
                           ),
                         ),
-                        FilledButton(
-                          onPressed: () {},
-                          style: FilledButton.styleFrom(
-                            padding: const EdgeInsets.all(16.0),
-                          ),
-                          child: const Text(
-                            'Order now',
-                            style: TextStyle(fontSize: 24.0),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: FilledButton(
+                            onPressed: () {},
+                            style: FilledButton.styleFrom(
+                              padding: const EdgeInsets.all(16.0),
+                            ),
+                            child: const Text(
+                              'Order now',
+                              style: TextStyle(fontSize: 24.0),
+                            ),
                           ),
                         ),
                       ],
