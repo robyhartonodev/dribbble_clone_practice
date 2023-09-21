@@ -5,14 +5,14 @@ import 'package:provider/provider.dart';
 import 'detail_page.dart';
 import 'home_page.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class CoffeeAppHomePage extends StatefulWidget {
+  const CoffeeAppHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CoffeeAppHomePage> createState() => _CoffeeAppHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CoffeeAppHomePageState extends State<CoffeeAppHomePage> {
   @override
   Widget build(BuildContext context) {
     var appState = Provider.of<CoffeeAppStateProvider>(context);

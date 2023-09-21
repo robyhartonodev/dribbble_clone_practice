@@ -1,7 +1,8 @@
 import 'dart:ui';
 
-import 'package:dribbble_clone_practice/coffee_app/pages/my_home_page.dart';
 import 'package:dribbble_clone_practice/coffee_app/providers/coffee_app_state_provider.dart';
+import 'package:dribbble_clone_practice/coffee_app/pages/coffee_app_home_page.dart';
+import 'package:dribbble_clone_practice/music_app/pages/music_app_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -104,6 +105,48 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                     ),
                   )),
             ),
+          ),
+          InkWell(
+            onTap: () {
+              appState.setAppIndex(2);
+              appState.setAppTitle('Music App');
+            },
+            child: Card(
+              color: Colors.white,
+              elevation: 4,
+              child: Container(
+                  height: 150,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8.0),
+                    ),
+                    color: Colors.white,
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.music_note_outlined,
+                          color: Colors.greenAccent,
+                          size: 64.0,
+                        ),
+                        SizedBox(
+                          width: 16.0,
+                        ),
+                        Text(
+                          'Music App',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+            ),
           )
         ],
       ),
@@ -120,7 +163,11 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
   // Add new apps here
-  List<Widget> apps = [const MainNavigationPage(), const MyHomePage()];
+  List<Widget> apps = [
+    const MainNavigationPage(),
+    const CoffeeAppHomePage(),
+    const MusicAppHomePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
